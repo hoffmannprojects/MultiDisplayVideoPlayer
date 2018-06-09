@@ -17,7 +17,18 @@ public class VideoManager : NetworkBehaviour
         videoPlayer = Camera.main.GetComponent<VideoPlayer>();
         Assert.IsNotNull(videoPlayer);
 
-        videoPlayer.url = videoUrl;
+        // Platform specific file paths.
+        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            // Windows code.
+            videoPlayer.url = Application.dataPath + "/../" + videoUrl;
+        }
+        else
+        {
+            // Mac code.
+            videoPlayer.url = Application.dataPath + "/../../" + videoUrl;
+        }
+        Debug.LogErrorFormat("videoUrl set to: {0}", videoPlayer.url);
     }
 
     // Update is called once per frame
@@ -36,7 +47,7 @@ public class VideoManager : NetworkBehaviour
 
     // Called from the client, run on the server.
     [Command]
-    public void CmdTogglePlayback ()
+    public void CmdTogglePlayback()
     {
         Debug.Log("Called CmdTogglePlayback from client.");
         RpcTogglePlayback();
@@ -44,7 +55,7 @@ public class VideoManager : NetworkBehaviour
 
     // Called on the server, run on all clients.
     [ClientRpc]
-    private void RpcTogglePlayback ()
+    private void RpcTogglePlayback()
     {
         if (!videoPlayer.isPlaying)
         {
