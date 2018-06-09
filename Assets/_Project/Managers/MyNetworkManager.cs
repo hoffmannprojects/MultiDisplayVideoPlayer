@@ -18,16 +18,18 @@ public class MyNetworkManager : NetworkManager
 		
 	}
 
-    public override void OnStartClient (NetworkClient client)
-    {
-        base.OnStartClient(client);
-        Debug.LogFormat("{0} Client start requested {1}", Time.timeSinceLevelLoad, client);
-    }
-
+    // Called on the client.
     public override void OnClientConnect (NetworkConnection conn)
     {
         base.OnClientConnect(conn);
-        Debug.LogFormat("{0} Client connected to {1}", Time.timeSinceLevelLoad, conn.address);
+        Debug.LogFormat("{0} [Client] connected to {1}", Time.timeSinceLevelLoad, conn.address);
+    }
+
+    // Called on the server.
+    public override void OnServerConnect (NetworkConnection conn)
+    {
+        base.OnServerConnect(conn);
+        Debug.LogFormat("{0} [Server] Client connected from {1}", Time.timeSinceLevelLoad, conn.address);
     }
 }
       

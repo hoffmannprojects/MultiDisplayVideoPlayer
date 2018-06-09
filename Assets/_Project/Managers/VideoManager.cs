@@ -10,9 +10,6 @@ public class VideoManager : NetworkBehaviour
     private const string videoUrl = "D:\\Tim\\Documents\\Github\\MultiDisplayVideoPlayer\\file.mov";
     private VideoPlayer videoPlayer;
 
-    [SyncVar]
-    private bool networkPlaybackStarted = false;
-
     // Use this for initialization
     void Start()
     {
@@ -25,18 +22,19 @@ public class VideoManager : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (networkPlaybackStarted)
-        //{
-        //    videoPlayer.Play();
-        //}
-        //else
-        //{
-        //    videoPlayer.Stop();
-        //}
 
     }
+
+    // Called from the client, run on the server.
     [Command]
     public void CmdTogglePlayback ()
+    {
+        Debug.Log("Called CmdTogglePlayback from client.");
+        RpcTogglePlayback();
+    }
+
+    // Called on the server, run on all clients.
+    private void RpcTogglePlayback ()
     {
         if (!videoPlayer.isPlaying)
         {
@@ -49,5 +47,6 @@ public class VideoManager : NetworkBehaviour
             Debug.Log("Playback stopped.");
 
         }
+        Debug.Log("Called RpcTogglePlayback from server");
     }
 }
