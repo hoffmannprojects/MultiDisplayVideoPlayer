@@ -814,7 +814,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1752390617}
+      - m_Target: {fileID: 114662888776726680, guid: 1bd75374cce78f5408b193221c922f5c,
+          type: 2}
         m_MethodName: CmdTogglePlayback
         m_Mode: 1
         m_Arguments:
