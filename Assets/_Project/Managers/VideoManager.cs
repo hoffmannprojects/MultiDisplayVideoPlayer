@@ -41,10 +41,13 @@ public class VideoManager : NetworkBehaviour
         if (!videoPlayer.isPlaying)
         {
             videoPlayer.Play();
+            Debug.Log("Playback started.");
         }
         else
         {
             videoPlayer.Stop();
+            Debug.Log("Playback stopped.");
+
         }
     }
 }
