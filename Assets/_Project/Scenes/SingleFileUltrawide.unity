@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &306786982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,6 +861,43 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1546286057}
+--- !u!1 &1550145117 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1033254467953924, guid: c377aa52e6ab90347abc62cb02629e8c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1118083202}
+--- !u!114 &1550145118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1550145117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 195
+    i1: 119
+    i2: 170
+    i3: 82
+    i4: 230
+    i5: 171
+    i6: 144
+    i7: 52
+    i8: 122
+    i9: 188
+    i10: 98
+    i11: 203
+    i12: 2
+    i13: 98
+    i14: 158
+    i15: 140
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!328 &1550145123 stripped
 VideoPlayer:
   m_PrefabParentObject: {fileID: 328130827624886676, guid: c377aa52e6ab90347abc62cb02629e8c,
