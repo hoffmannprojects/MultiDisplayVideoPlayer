@@ -17,4 +17,10 @@ public class MyNetworkManager : NetworkManager
 	{
 		
 	}
+
+    public override void OnClientConnect (NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
+        Debug.LogFormat("Client connected {0}", conn);
+    }
 }
