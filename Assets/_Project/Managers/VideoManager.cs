@@ -7,7 +7,7 @@ using UnityEngine.Video;
 
 public class VideoManager : NetworkBehaviour
 {
-    private const string videoUrl = "D:\\Tim\\Documents\\Github\\MultiDisplayVideoPlayer\\file.mov";
+    private const string videoUrl = "file.mp4";
     private VideoPlayer videoPlayer;
 
     // Use this for initialization
