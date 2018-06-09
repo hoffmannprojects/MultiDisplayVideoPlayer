@@ -7,7 +7,8 @@ using UnityEngine.Video;
 
 public class VideoManager : NetworkBehaviour
 {
-    private const string videoUrl = "file.mp4";
+    [SerializeField]
+    private string videoUrl = "file.mov";
     private VideoPlayer videoPlayer;
 
     // Use this for initialization
