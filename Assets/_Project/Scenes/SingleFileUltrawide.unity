@@ -144,7 +144,7 @@ MonoBehaviour:
   height: 1080
   enableCustomResolution: 0
   videoEnabledDebugText: {fileID: 1722206543}
-  videoPlayer: {fileID: 0}
+  videoPlayer: {fileID: 1550145123}
 --- !u!4 &306786983
 Transform:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &992146912
 GameObject:
@@ -250,8 +250,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1983161895}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &992146914
 MonoBehaviour:
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_MaxDelay: 0.01
   m_LogLevel: 2
   m_PlayerPrefab: {fileID: 0}
-  m_AutoCreatePlayer: 1
+  m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
@@ -607,7 +607,7 @@ Transform:
   m_Children:
   - {fileID: 1182141529}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1546286057
 GameObject:
@@ -811,7 +811,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!328 &1550145123
 VideoPlayer:
@@ -945,7 +945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1983161895}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1752390617
 MonoBehaviour:
@@ -985,8 +985,7 @@ Transform:
   m_Children:
   - {fileID: 306786983}
   - {fileID: 1213691795}
-  - {fileID: 992146913}
   - {fileID: 1752390616}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
