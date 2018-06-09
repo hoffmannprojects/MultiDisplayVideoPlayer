@@ -42,6 +42,7 @@ public class VideoManager : NetworkBehaviour
     }
 
     // Called on the server, run on all clients.
+    [ClientRpc]
     private void RpcTogglePlayback ()
     {
         if (!videoPlayer.isPlaying)
