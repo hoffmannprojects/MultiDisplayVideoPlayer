@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class VideoManager : NetworkBehaviour
+public class VideoManager : MonoBehaviour
 {
     [SerializeField]
     private string fileName = "file.mov";
@@ -42,35 +42,23 @@ public class VideoManager : NetworkBehaviour
         debugText.text = "Preparing video for playback.";
     }
 
-    void Prepared (VideoPlayer vPlayer)
+    private void Prepared (VideoPlayer vPlayer)
     {
         debugText.text = "Video is ready for playback.";
         debugText.color = Color.green;
     }
 
-    // Called from the client, run on the server.
-    [Command]
-    public void CmdTogglePlayback()
-    {
-        Debug.Log("Called CmdTogglePlayback from client.");
-        RpcTogglePlayback();
-    }
-
-    // Called on the server, run on all clients.
-    [ClientRpc]
-    private void RpcTogglePlayback()
+    #region PUBLIC METHODS
+    public void TogglePlayback ()
     {
         if (!videoPlayer.isPlaying)
         {
             videoPlayer.Play();
-            Debug.Log("Playback started.");
         }
         else
         {
             videoPlayer.Stop();
-            Debug.Log("Playback stopped.");
-
         }
-        Debug.Log("Called RpcTogglePlayback from server");
-    }
+    } 
+    #endregion
 }
