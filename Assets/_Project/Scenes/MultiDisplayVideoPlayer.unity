@@ -1338,6 +1338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIGameObjects:
   - {fileID: 1182141528}
+  - {fileID: 1332362444}
 --- !u!1 &1722206543
 GameObject:
   m_ObjectHideFlags: 0
