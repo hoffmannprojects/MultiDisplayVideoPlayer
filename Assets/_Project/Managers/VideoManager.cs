@@ -34,15 +34,7 @@ public class VideoManager : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-
-        if (Input.GetKeyDown("space"))
-        {
-            CmdTogglePlayback();
-        }
+        
     }
 
     // Called from the client, run on the server.

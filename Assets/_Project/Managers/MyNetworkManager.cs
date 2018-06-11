@@ -15,8 +15,8 @@ public class MyNetworkManager : NetworkManager
 	// Update is called once per frame
 	private void Update () 
 	{
-		
-	}
+        
+    }
 
     // Called on the client.
     public override void OnClientConnect (NetworkConnection conn)
