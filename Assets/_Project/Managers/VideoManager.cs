@@ -13,12 +13,16 @@ public class VideoManager : MonoBehaviour
     [SerializeField]
     private Text debugText;
     private VideoPlayer videoPlayer;
+    private VideoPlayer videoPlayer2;
 
     // Use this for initialization
-    void Start()
+    void Start ()
     {
         videoPlayer = Camera.main.GetComponent<VideoPlayer>();
         Assert.IsNotNull(videoPlayer);
+
+        videoPlayer2 = GameObject.FindGameObjectWithTag("Display2Camera").GetComponent<VideoPlayer>();
+        Assert.IsNotNull(videoPlayer2);
 
         Assert.IsNotNull(debugText);
 
@@ -35,7 +39,11 @@ public class VideoManager : MonoBehaviour
             filePath = Application.dataPath + "/../../" + fileName;
         }
         videoPlayer.url = filePath;
+        videoPlayer2.url = filePath;
+
         videoPlayer.Prepare();
+        videoPlayer2.Prepare();
+
         videoPlayer.prepareCompleted += Prepared;
 
         debugText.enabled = true;
@@ -54,10 +62,12 @@ public class VideoManager : MonoBehaviour
         if (!videoPlayer.isPlaying)
         {
             videoPlayer.Play();
+            videoPlayer2.Play();
         }
         else
         {
             videoPlayer.Stop();
+            videoPlayer2.Stop();
         }
     } 
     #endregion

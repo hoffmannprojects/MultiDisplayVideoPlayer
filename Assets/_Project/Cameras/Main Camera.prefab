@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 124542478620622260}
   - component: {fileID: 81938249669139424}
   - component: {fileID: 328130827624886676}
-  - component: {fileID: 114746256151905720}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -87,38 +86,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033254467953924}
   m_Enabled: 1
---- !u!114 &114746256151905720
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1033254467953924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 195
-    i1: 119
-    i2: 170
-    i3: 82
-    i4: 230
-    i5: 171
-    i6: 144
-    i7: 52
-    i8: 122
-    i9: 188
-    i10: 98
-    i11: 203
-    i12: 2
-    i13: 98
-    i14: 158
-    i15: 140
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!124 &124542478620622260
 Behaviour:
   m_ObjectHideFlags: 1
@@ -142,7 +109,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 1
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
