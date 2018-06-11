@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class VideoManager : NetworkBehaviour
 {
     [SerializeField]
-    private string videoUrl = "file.mov";
+    private string fileName = "file.mov";
+    [SerializeField]
+    private Text debugText;
     private VideoPlayer videoPlayer;
 
     // Use this for initialization
@@ -17,24 +20,32 @@ public class VideoManager : NetworkBehaviour
         videoPlayer = Camera.main.GetComponent<VideoPlayer>();
         Assert.IsNotNull(videoPlayer);
 
+        Assert.IsNotNull(debugText);
+
+        string filePath = null;
         // Platform specific file paths.
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
         {
             // Windows code.
-            videoPlayer.url = Application.dataPath + "/../" + videoUrl;
+            filePath = Application.dataPath + "/../" + fileName;
         }
         else
         {
             // Mac code.
-            videoPlayer.url = Application.dataPath + "/../../" + videoUrl;
+            filePath = Application.dataPath + "/../../" + fileName;
         }
-        Debug.LogErrorFormat("videoUrl set to: {0}", videoPlayer.url);
+        videoPlayer.url = filePath;
+        videoPlayer.Prepare();
+        videoPlayer.prepareCompleted += Prepared;
+
+        debugText.enabled = true;
+        debugText.text = "Preparing video for playback.";
     }
 
-    // Update is called once per frame
-    void Update()
+    void Prepared (VideoPlayer vPlayer)
     {
-        
+        debugText.text = "Video is ready for playback.";
+        debugText.color = Color.green;
     }
 
     // Called from the client, run on the server.
