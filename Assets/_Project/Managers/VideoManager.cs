@@ -20,6 +20,7 @@ public class VideoManager : MonoBehaviour
 
     private bool playbackIsStarted = false;
     private double maxTimingError = 0d;
+    private long framesDropped = 0;
     
     // Use this for initialization
     void Start ()
@@ -104,6 +105,11 @@ public class VideoManager : MonoBehaviour
             {
                 maxTimingError = timingError;
             }
+
+            if (frameError > 0)
+            {
+                framesDropped += frameError;
+            }
         }
     }
 
@@ -130,10 +136,9 @@ public class VideoManager : MonoBehaviour
 
             displayManager.ShowUI();
 
-            videoPlayer1.Prepare();
-            videoPlayer2.Prepare();
-
             Debug.LogFormat("maxTimingError: {0}", maxTimingError);
+
+            debugText.text += "\n max. Timing Error: " + maxTimingError + "\n Frames dropped: " + framesDropped;
         }
         playbackIsStarted = !playbackIsStarted;
     } 
