@@ -17,15 +17,16 @@ public class Player : MonoBehaviour
 
         displayManager = FindObjectOfType<DisplayManager>();
         Assert.IsNotNull(displayManager);
-	}
-	
-	// Update is called once per frame
-	private void Update () 
-	{
-        if (Input.GetKeyDown("space"))
-        {
-            videoManager.TogglePlayback();
-        }
+    }
+
+    // Update is called once per frame
+    private void Update ()
+    {
+        //       if (Input.GetKeyDown("space"))
+        //       {
+        //           displayManager.HideUI();
+        //           videoManager.TogglePlayback();
+        //       }
 
         if (Input.GetKeyDown("i"))
         {
