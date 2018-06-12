@@ -33,7 +33,7 @@ public class VideoManager : MonoBehaviour
     {
         InitializeReferences();
 
-        // SetVideoUrls();
+        SetVideoUrls();
 
         // External reference clock the VideoPlayer observes to detect and correct drift.
         videoPlayer1.timeReference = VideoTimeReference.InternalTime;
@@ -66,6 +66,7 @@ public class VideoManager : MonoBehaviour
         Assert.IsNotNull(debugText);
     }
 
+    // Deprecated.
     private void SetVideoUrls ()
     {
         // Platform specific file paths.
@@ -81,9 +82,10 @@ public class VideoManager : MonoBehaviour
             Display1FilePath = Application.dataPath + "/../../" + file1Name;
             Display2FilePath = Application.dataPath + "/../../" + file2Name;
         }
-
         videoPlayer1.url = Display1FilePath;
         videoPlayer2.url = Display2FilePath;
+
+        Debug.Log("video1 static URL set to: " + videoPlayer1.url);
     }
 
     private void Update ()
@@ -124,15 +126,17 @@ public class VideoManager : MonoBehaviour
     }
 
     #region PUBLIC METHODS
-    private void SetVideoUrl (string filePath, int targetDisplay)
+    public void SetVideoUrl (string filePath, int targetDisplay)
     {
         if (targetDisplay == 1)
         {
-            videoPlayer1.url = filePath; 
+            videoPlayer1.url = filePath;
+            Debug.Log("video1 url set to: " + videoPlayer1.url);
         }
         else if (targetDisplay == 2)
         {
             videoPlayer2.url = filePath;
+            Debug.Log("video2 url set");
         }
     }
 

@@ -56,18 +56,12 @@ public class OpenFileDialogue : MonoBehaviour, IPointerDownHandler
         var paths = StandaloneFileBrowser.OpenFilePanel(Title, Directory, Extension, Multiselect);
         if (paths.Length > 0)
         {
-            StartCoroutine(OutputRoutine(new System.Uri(paths[0]).AbsoluteUri));
+            if (_targetDisplay >= 1 && _targetDisplay <= 2)
+            {
+                var path = paths[0];
+                _videoManager.SetVideoUrl(path, _targetDisplay);
+            }
         }
     }
 #endif
-
-    private IEnumerator OutputRoutine (string url)
-    {
-        Debug.Log("URL: " + url);
-        var loader = new WWW(url);
-        yield return loader;
-        //output.texture = loader.texture;
-
-        _videoManager.VideoFilePaths[_targetDisplay] = loader.ToString();
-    }
 }
