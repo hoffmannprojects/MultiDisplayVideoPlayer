@@ -21,13 +21,19 @@ public class VideoManager : MonoBehaviour
     private bool playbackIsStarted = false;
     private double maxTimingError = 0d;
     private long framesDropped = 0;
-    
+
+    #region PROPERTIES
+    public string[] VideoFilePaths { get; set; }
+    public string Display1FilePath { get; set; } = null;
+    public string Display2FilePath { get; set; } = null; 
+    #endregion
+
     // Use this for initialization
     void Start ()
     {
         InitializeReferences();
 
-        SetVideoUrls();
+        // SetVideoUrls();
 
         // External reference clock the VideoPlayer observes to detect and correct drift.
         videoPlayer1.timeReference = VideoTimeReference.InternalTime;
@@ -62,24 +68,22 @@ public class VideoManager : MonoBehaviour
 
     private void SetVideoUrls ()
     {
-        string file1Path = null;
-        string file2Path = null;
         // Platform specific file paths.
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
         {
             // Windows code.
-            file1Path = Application.dataPath + "/../" + file1Name;
-            file2Path = Application.dataPath + "/../" + file2Name;
+            Display1FilePath = Application.dataPath + "/../" + file1Name;
+            Display2FilePath = Application.dataPath + "/../" + file2Name;
         }
         else
         {
             // Mac code.
-            file1Path = Application.dataPath + "/../../" + file1Name;
-            file2Path = Application.dataPath + "/../../" + file2Name;
+            Display1FilePath = Application.dataPath + "/../../" + file1Name;
+            Display2FilePath = Application.dataPath + "/../../" + file2Name;
         }
 
-        videoPlayer1.url = file1Path;
-        videoPlayer2.url = file2Path;
+        videoPlayer1.url = Display1FilePath;
+        videoPlayer2.url = Display2FilePath;
     }
 
     private void Update ()
@@ -120,6 +124,18 @@ public class VideoManager : MonoBehaviour
     }
 
     #region PUBLIC METHODS
+    private void SetVideoUrl (string filePath, int targetDisplay)
+    {
+        if (targetDisplay == 1)
+        {
+            videoPlayer1.url = filePath; 
+        }
+        else if (targetDisplay == 2)
+        {
+            videoPlayer2.url = filePath;
+        }
+    }
+
     public void TogglePlayback ()
     {
         if (!videoPlayer1.isPlaying)
