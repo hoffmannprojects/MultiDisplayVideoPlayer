@@ -2,41 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UI;
-using UnityEngine.Video;
+using UnityEngine.Networking;
 
-public class DisplayManager : MonoBehaviour
+public class DisplayManager : MonoBehaviour 
 {
     [SerializeField]
-    private int singleWidth = 1920;
-    [SerializeField]
-    private int height = 1080;
-    [SerializeField]
-    private bool enableCustomResolution = false;
+    private GameObject[] UIGameObjects;
 
-    [SerializeField]
-    private GameObject videoEnabledDebugText;
-    [SerializeField]
-    private VideoPlayer videoPlayer;
+    private bool uiIsVisible = true;
 
     // Use this for initialization
-    void Start()
+    private void Start ()
     {
-        videoPlayer = FindObjectOfType<VideoPlayer>();
-        Assert.IsNotNull(videoPlayer);
-        Assert.IsNotNull(videoEnabledDebugText);
 
-        if (enableCustomResolution)
+    }
+
+    #region PUBLIC METHODS
+    public void ToggleUI ()
+    {
+        if (uiIsVisible)
         {
-            Screen.SetResolution(singleWidth * 2, height, false);
-            Display.displays[0].Activate();
+            HideUI();
+        }
+        else
+        {
+            ShowUI();
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HideUI ()
     {
-        videoEnabledDebugText.GetComponent<Text>().text = "isPlaying: " + videoPlayer.isPlaying;
+        if (UIGameObjects.Length != 0)
+        {
+            foreach (var uiGameObject in UIGameObjects)
+            {
+                uiGameObject.SetActive(false);
+            }
 
+            uiIsVisible = false;
+        }
     }
+
+    public void ShowUI ()
+    {
+        if (UIGameObjects.Length != 0)
+        {
+            foreach (var uiGameObject in UIGameObjects)
+            {
+                uiGameObject.SetActive(true);
+            }
+
+            uiIsVisible = true;
+        }
+    } 
+    #endregion
 }
