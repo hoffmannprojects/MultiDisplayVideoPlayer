@@ -24,14 +24,14 @@ public class DisplayManager : MonoBehaviour
         if (uiIsVisible)
         {
             HideUI();
-            //Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else
         {
             ShowUI();
-            //Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
