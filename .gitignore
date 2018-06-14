@@ -51,3 +51,9 @@ ehthumbs.db
 # ======= #
 *__NoVersionControl*
 Assets/Plugins*
+
+Assets/StandaloneFileBrowser/Sample/
+
+Assets/StandaloneFileBrowser/Sample\.meta
+
+file2\.mov

@@ -7,14 +7,15 @@ using UnityEngine.Networking;
 public class DisplayManager : MonoBehaviour 
 {
     [SerializeField]
-    private GameObject[] UIGameObjects;
+    private GameObject[] _uiGameObjects;
+    private NetworkManagerHUD _networkManagerHud;
 
     private bool uiIsVisible = true;
 
     // Use this for initialization
     private void Start ()
     {
-
+        _networkManagerHud = FindObjectOfType<NetworkManagerHUD>();
     }
 
     #region PUBLIC METHODS
@@ -23,20 +24,25 @@ public class DisplayManager : MonoBehaviour
         if (uiIsVisible)
         {
             HideUI();
+            //Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
             ShowUI();
+            //Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
     public void HideUI ()
     {
-        if (UIGameObjects.Length != 0)
+        if (_uiGameObjects.Length != 0)
         {
-            foreach (var uiGameObject in UIGameObjects)
+            foreach (var uiGameObject in _uiGameObjects)
             {
                 uiGameObject.SetActive(false);
+                _networkManagerHud.showGUI = false;
             }
 
             uiIsVisible = false;
@@ -45,11 +51,12 @@ public class DisplayManager : MonoBehaviour
 
     public void ShowUI ()
     {
-        if (UIGameObjects.Length != 0)
+        if (_uiGameObjects.Length != 0)
         {
-            foreach (var uiGameObject in UIGameObjects)
+            foreach (var uiGameObject in _uiGameObjects)
             {
                 uiGameObject.SetActive(true);
+                _networkManagerHud.showGUI = true;
             }
 
             uiIsVisible = true;

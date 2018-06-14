@@ -67,10 +67,10 @@ public class VideoManager : MonoBehaviour
             UpdateVideoPlayerState();
         }
 
-        if (Input.GetKeyDown("space") && videoPlayer1.isPrepared && videoPlayer2.isPrepared)
-        {
-            TogglePlayback();
-        }
+        //if (Input.GetKeyDown("space") && videoPlayer1.isPrepared && videoPlayer2.isPrepared)
+        //{
+        //    TogglePlayback();
+        //}
 
         if (playbackIsStarted)
         {
@@ -149,8 +149,6 @@ public class VideoManager : MonoBehaviour
     {
         if (!videoPlayer1.isPlaying)
         {
-            displayManager.HideUI();
-
             videoPlayer1.Play();
             videoPlayer2.Play();
         }
@@ -158,8 +156,6 @@ public class VideoManager : MonoBehaviour
         {
             videoPlayer1.Stop();
             videoPlayer2.Stop();
-
-            displayManager.ShowUI();
 
             Debug.LogFormat("maxTimingError: {0}", maxTimingError);
 
