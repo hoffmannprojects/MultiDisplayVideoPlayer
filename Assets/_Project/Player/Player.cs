@@ -30,6 +30,7 @@ public class Player : NetworkBehaviour
         if (Input.GetKeyDown("space"))
         {
             CmdTogglePlayback();
+            displayManager.ToggleUI();
         }
 
         if (Input.GetKeyDown("i"))
