@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Networking;
 
-public class Player : NetworkBehaviour 
+public class Player : MonoBehaviour 
 {
     private VideoManager videoManager;
     private DisplayManager displayManager;
@@ -17,38 +17,20 @@ public class Player : NetworkBehaviour
 
         displayManager = FindObjectOfType<DisplayManager>();
         Assert.IsNotNull(displayManager);
-	}
-	
-	// Update is called once per frame
-	private void Update () 
-	{
-        if (!isLocalPlayer)
-        {
-            return;
-        }
+    }
 
-        if (Input.GetKeyDown("space"))
-        {
-            CmdTogglePlayback();
-        }
+    // Update is called once per frame
+    private void Update ()
+    {
+        //       if (Input.GetKeyDown("space"))
+        //       {
+        //           displayManager.HideUI();
+        //           videoManager.TogglePlayback();
+        //       }
 
         if (Input.GetKeyDown("i"))
         {
             displayManager.ToggleUI();
         }
-    }
-
-    // Called from the client, run on the server.
-    [Command]
-    public void CmdTogglePlayback ()
-    {
-        RpcTogglePlayback();
-    }
-
-    // Called on the server, run on all clients.
-    [ClientRpc]
-    private void RpcTogglePlayback ()
-    {
-        videoManager.TogglePlayback();
     }
 }

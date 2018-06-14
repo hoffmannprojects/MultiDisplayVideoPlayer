@@ -8,17 +8,13 @@ public class DisplayManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] UIGameObjects;
-    private NetworkManager networkManager;
 
     private bool uiIsVisible = true;
 
     // Use this for initialization
     private void Start ()
     {
-        networkManager = FindObjectOfType<NetworkManager>();
-        Assert.IsNotNull(networkManager);
 
-        HideUI();
     }
 
     #region PUBLIC METHODS
@@ -43,8 +39,6 @@ public class DisplayManager : MonoBehaviour
                 uiGameObject.SetActive(false);
             }
 
-            //TODO: Hide networkmanager HUD.
-
             uiIsVisible = false;
         }
     }
@@ -57,8 +51,6 @@ public class DisplayManager : MonoBehaviour
             {
                 uiGameObject.SetActive(true);
             }
-
-            // TODO: Show NetworkManagerHUD.
 
             uiIsVisible = true;
         }
