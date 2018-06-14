@@ -67,10 +67,10 @@ public class VideoManager : MonoBehaviour
             UpdateVideoPlayerState();
         }
 
-        if (Input.GetKeyDown("space") && videoPlayer1.isPrepared && videoPlayer2.isPrepared)
-        {
-            TogglePlayback();
-        }
+        //if (Input.GetKeyDown("space") && videoPlayer1.isPrepared && videoPlayer2.isPrepared)
+        //{
+        //    TogglePlayback();
+        //}
 
         if (playbackIsStarted)
         {
