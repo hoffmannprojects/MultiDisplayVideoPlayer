@@ -14,6 +14,9 @@ public class VideoManager : MonoBehaviour
     private Text video1StateDisplay;
     [SerializeField]
     private Text video2StateDisplay;
+    [SerializeField]
+    private AudioSource audioSource;
+
     private VideoPlayer videoPlayer1;
     private VideoPlayer videoPlayer2;
     private DisplayManager displayManager;
@@ -30,6 +33,26 @@ public class VideoManager : MonoBehaviour
     void Start ()
     {
         InitializeReferences();
+        InitializeVideoPlayer();
+    }
+
+    private void InitializeVideoPlayer ()
+    {
+        // We want to play from a URL.
+        // Set the source mode FIRST, before changing audio settings;
+        // as setting the source mode will reset those.
+        videoPlayer1.source = VideoSource.Url;
+
+        videoPlayer1.audioOutputMode = VideoAudioOutputMode.AudioSource;
+
+        // We want to control one audio track with the video player
+        videoPlayer1.controlledAudioTrackCount = 1;
+
+        // We enable the first track, which has the id zero
+        videoPlayer1.EnableAudioTrack(0, true);
+
+        // ...and we set the audio source for this track
+        videoPlayer1.SetTargetAudioSource(0, audioSource);
 
         // External reference clock the VideoPlayer observes to detect and correct drift.
         videoPlayer1.timeReference = VideoTimeReference.InternalTime;
@@ -41,7 +64,6 @@ public class VideoManager : MonoBehaviour
         //video1debugText.enabled = true;
         //video2debugText.enabled = true;
         video2StateDisplay.text = "Preparing video for playback.";
-
     }
 
     private void InitializeReferences ()
@@ -58,6 +80,8 @@ public class VideoManager : MonoBehaviour
         Assert.IsNotNull(debugText);
         Assert.IsNotNull(video1StateDisplay);
         Assert.IsNotNull(video2StateDisplay);
+
+        Assert.IsNotNull(audioSource);
     }
 
     private void Update ()
@@ -79,10 +103,8 @@ public class VideoManager : MonoBehaviour
             //videoPlayer2.externalReferenceTime = videoPlayer1.time;
 
             long frameError = System.Math.Abs(videoPlayer1.frame - videoPlayer2.frame);
-            Debug.LogFormat("frameError: {0}", frameError);
 
             double timingError = System.Math.Abs(videoPlayer1.time - videoPlayer2.time);
-            Debug.LogFormat("timeError: {0}", timingError);
 
             if (timingError > maxTimingError)
             {
@@ -129,7 +151,6 @@ public class VideoManager : MonoBehaviour
         if (targetDisplay == 1)
         {
             videoPlayer1.url = filePath;
-            Debug.Log("video1 url set to: " + videoPlayer1.url);
 
             videoPlayer1.Prepare();
             videoPlayer1.prepareCompleted += OnVideoPlayer1Prepared;
@@ -138,7 +159,6 @@ public class VideoManager : MonoBehaviour
         else if (targetDisplay == 2)
         {
             videoPlayer2.url = filePath;
-            Debug.Log("video2 url set");
 
             videoPlayer2.Prepare();
             videoPlayer2.prepareCompleted += OnVideoPlayer2Prepared;
@@ -156,8 +176,6 @@ public class VideoManager : MonoBehaviour
         {
             videoPlayer1.Stop();
             videoPlayer2.Stop();
-
-            Debug.LogFormat("maxTimingError: {0}", maxTimingError);
 
             debugText.text += "\n max. Timing Error: " + maxTimingError + "\n Frames dropped: " + framesDropped;
 
